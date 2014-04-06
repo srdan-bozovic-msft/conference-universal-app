@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7ee35e18-a459-4a3a-8720-f937d16e6dff</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Conference.App</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutAppSettingsFlyoutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PrivacySettingsFlyoutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SessionDetailsFlyoutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SessionGroupTileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SessionTileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpeakerDetailsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpeakerDetailsFlyoutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpeakerGroupTileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpeakerTileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TabPageViewModel.cs" />
+  </ItemGroup>
+</Project>

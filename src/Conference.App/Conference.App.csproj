@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{01DED6E1-71FF-4C26-B672-5459E8FA579A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Conference.App</RootNamespace>
+    <AssemblyName>Conference.App</AssemblyName>
+    <DefaultLanguage>sr-Latn</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Conference.App_StoreKey.pfx</PackageCertificateKeyFile>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <PackageCertificateThumbprint>5B2CC5845AFC42E7D67D46169B8F230C8A42BE31</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\botja\Desktop\DevData\Final\</AppxPackageDir>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\Conference.Contracts\Conference.Contracts.csproj">
+      <Project>{ef6e8947-7f5f-4de4-983b-61daadee3cbe}</Project>
+      <Name>Conference.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Conference.Repositories\Conference.Repositories.csproj">
+      <Project>{86870c1b-d83d-4808-8aea-159549211038}</Project>
+      <Name>Conference.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Conference.Services\Conference.Services.csproj">
+      <Project>{d2e748ff-30e8-46f8-81f7-697cf2bbc570}</Project>
+      <Name>Conference.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MsCampus.Win.Shared.DI\MsCampus.Win.Shared.DI.csproj">
+      <Project>{75151eb4-f2ea-4e24-b764-d04ab127af30}</Project>
+      <Name>MsCampus.Win.Shared.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MsCampus.Win.Shared\MsCampus.Win.Shared.csproj">
+      <Project>{da423f0a-79ad-48b8-be7e-0bfde717d817}</Project>
+      <Name>MsCampus.Win.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\StringToCharConverter.cs" />
+    <Compile Include="Common\ViewModelLocator.cs" />
+    <Compile Include="Controls\AutoRotatingGridView.cs" />
+    <Compile Include="ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\AboutAppSettingsFlyoutView.xaml.cs">
+      <DependentUpon>AboutAppSettingsFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomePageView.xaml.cs">
+      <DependentUpon>HomePageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrivacySettingsFlyoutView.xaml.cs">
+      <DependentUpon>PrivacySettingsFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SessionDetailsFlyoutView.xaml.cs">
+      <DependentUpon>SessionDetailsFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpeakerDetailsFlyoutView.xaml.cs">
+      <DependentUpon>SpeakerDetailsFlyoutView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Conference.App_StoreKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Conference.App_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\LogoTitle.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-140.png" />
+    <Content Include="Assets\SplashScreen.scale-180.png" />
+    <Content Include="Assets\SquareLogo150x150.scale-100.png" />
+    <Content Include="Assets\SquareLogo150x150.scale-140.png" />
+    <Content Include="Assets\SquareLogo150x150.scale-180.png" />
+    <Content Include="Assets\SquareLogo150x150.scale-80.png" />
+    <Content Include="Assets\SquareLogo30x30.scale-100.png" />
+    <Content Include="Assets\SquareLogo30x30.scale-140.png" />
+    <Content Include="Assets\SquareLogo30x30.scale-180.png" />
+    <Content Include="Assets\SquareLogo30x30.scale-80.png" />
+    <Content Include="Assets\SquareLogo30x30.targetsize-16.png" />
+    <Content Include="Assets\SquareLogo30x30.targetsize-256.png" />
+    <Content Include="Assets\SquareLogo30x30.targetsize-32.png" />
+    <Content Include="Assets\SquareLogo30x30.targetsize-48.png" />
+    <Content Include="Assets\SquareLogo310x310.scale-100.png" />
+    <Content Include="Assets\SquareLogo310x310.scale-140.png" />
+    <Content Include="Assets\SquareLogo310x310.scale-180.png" />
+    <Content Include="Assets\SquareLogo310x310.scale-80.png" />
+    <Content Include="Assets\SquareLogo70x70.scale-100.png" />
+    <Content Include="Assets\SquareLogo70x70.scale-140.png" />
+    <Content Include="Assets\SquareLogo70x70.scale-180.png" />
+    <Content Include="Assets\SquareLogo70x70.scale-80.png" />
+    <Content Include="Assets\sr-Latn\SplashScreen.scale-100.png" />
+    <Content Include="Assets\sr-Latn\SplashScreen.scale-140.png" />
+    <Content Include="Assets\sr-Latn\SplashScreen.scale-180.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo150x150.scale-100.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo150x150.scale-140.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo150x150.scale-180.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo150x150.scale-80.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.scale-100.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.scale-140.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.scale-180.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.scale-80.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.targetsize-16.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.targetsize-256.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.targetsize-32.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo30x30.targetsize-48.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo310x310.scale-100.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo310x310.scale-140.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo310x310.scale-180.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo310x310.scale-80.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo70x70.scale-100.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo70x70.scale-140.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo70x70.scale-180.png" />
+    <Content Include="Assets\sr-Latn\SquareLogo70x70.scale-80.png" />
+    <Content Include="Assets\sr-Latn\StoreLogo.scale-100.png" />
+    <Content Include="Assets\sr-Latn\StoreLogo.scale-140.png" />
+    <Content Include="Assets\sr-Latn\StoreLogo.scale-180.png" />
+    <Content Include="Assets\sr-Latn\WideLogo310x150.scale-100.png" />
+    <Content Include="Assets\sr-Latn\WideLogo310x150.scale-140.png" />
+    <Content Include="Assets\sr-Latn\WideLogo310x150.scale-180.png" />
+    <Content Include="Assets\sr-Latn\WideLogo310x150.scale-80.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-140.png" />
+    <Content Include="Assets\StoreLogo.scale-180.png" />
+    <Content Include="Assets\Tracks\ALM.png" />
+    <Content Include="Assets\Tracks\APM.png" />
+    <Content Include="Assets\Tracks\CLD.png" />
+    <Content Include="Assets\Tracks\DBI.png" />
+    <Content Include="Assets\Tracks\DEV.png" />
+    <Content Include="Assets\Tracks\DVC.png" />
+    <Content Include="Assets\Tracks\DYN.png" />
+    <Content Include="Assets\Tracks\GAM.png" />
+    <Content Include="Assets\Tracks\SES.png" />
+    <Content Include="Assets\Tracks\SRV.png" />
+    <Content Include="Assets\Tracks\UX.png" />
+    <Content Include="Assets\Tracks\WEB.png" />
+    <Content Include="Assets\WideLogo310x150.scale-100.png" />
+    <Content Include="Assets\WideLogo310x150.scale-140.png" />
+    <Content Include="Assets\WideLogo310x150.scale-180.png" />
+    <Content Include="Assets\WideLogo310x150.scale-80.png" />
+    <None Include="Package.StoreAssociation.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Common\CustomStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\AboutAppSettingsFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomePageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PrivacySettingsFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SessionDetailsFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SpeakerDetailsFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Win">
+      <HintPath>..\..\lib\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="..\Conference.App.Shared\Conference.App.Shared.projitems" Label="Shared" />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
