@@ -18,11 +18,16 @@ namespace MsCampus.Win.Shared.Implementation.Services
             httpClientHandler.AutomaticDecompression = System.Net.DecompressionMethods.GZip;
             var client = new HttpClient(httpClientHandler);
             var response = await client.GetAsync(url, cancellationToken).ConfigureAwait(false);
-            if (response != null && 
+            if (response != null &&
                 (response.StatusCode == System.Net.HttpStatusCode.OK))
-                return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+            {
+                var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return await JsonConvert.DeserializeObjectAsync<T>(responseContent).ConfigureAwait(false);
+            }
             else
+            {
                 return default(T);
+            }
         }
     }
 }

@@ -41,10 +41,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
-    <TargetPlatform Include="Windows, Version=8.1" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Models\ConferenceData.cs" />
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\Event.cs" />
@@ -71,6 +67,10 @@
     <Compile Include="Views\IPrivacySettingsFlyoutView.cs" />
     <Compile Include="Views\ISessionDetailsFlyoutView.cs" />
     <Compile Include="Views\ISpeakerDetailsFlyoutView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TargetPlatform Include="Windows, Version=8.1" />
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,6 +27,10 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Conference.App.Shared", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference.App.WindowsPhone", "Conference.App.WindowsPhone\Conference.App.WindowsPhone.csproj", "{5954AE5D-6A78-448A-8F80-61B5B1CD9A70}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{850E8254-8F7C-455C-8039-67E2393F0437}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadSpeakerPhotosTool", "DownloadSpeakerPhotosTool\DownloadSpeakerPhotosTool.csproj", "{7A2187AF-1195-4140-AF5C-581F2B6096AB}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Conference.App.Shared\Conference.App.Shared.projitems*{7ee35e18-a459-4a3a-8720-f937d16e6dff}*SharedItemsImports = 13
@@ -148,6 +152,16 @@ Global
 		{5954AE5D-6A78-448A-8F80-61B5B1CD9A70}.Release|x86.ActiveCfg = Release|x86
 		{5954AE5D-6A78-448A-8F80-61B5B1CD9A70}.Release|x86.Build.0 = Release|x86
 		{5954AE5D-6A78-448A-8F80-61B5B1CD9A70}.Release|x86.Deploy.0 = Release|x86
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|x64.ActiveCfg = Release|Any CPU
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,5 +177,6 @@ Global
 		{A7EBE289-2B71-4231-9E20-DF4038563B91} = {4CE6A30E-D98C-4860-A202-D8FEC3AB75E6}
 		{7EE35E18-A459-4A3A-8720-F937D16E6DFF} = {A7EBE289-2B71-4231-9E20-DF4038563B91}
 		{5954AE5D-6A78-448A-8F80-61B5B1CD9A70} = {A7EBE289-2B71-4231-9E20-DF4038563B91}
+		{7A2187AF-1195-4140-AF5C-581F2B6096AB} = {850E8254-8F7C-455C-8039-67E2393F0437}
 	EndGlobalSection
 EndGlobal

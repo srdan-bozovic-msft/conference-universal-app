@@ -21,4 +21,54 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpeakerTileInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TabPageViewModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Data\data.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\10.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1047.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1048.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1050.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1052.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1053.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1055.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1056.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1057.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1058.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1060.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1061.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1062.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1063.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1069.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\1071.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\11.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\12.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\13.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\15.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\16.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\22.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\25.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\26.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\27.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\28.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\30.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\31.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\32.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\34.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\36.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\37.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\39.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\40.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\41.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\42.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\44.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\45.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\46.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\48.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\55.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\57.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\59.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\60.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\61.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\7.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\SpeakerPhotos\8.jpg" />
+  </ItemGroup>
 </Project>
