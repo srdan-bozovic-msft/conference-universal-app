@@ -133,16 +133,16 @@ namespace Conference.App
             
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
 
-            PeriodicUpdateRecurrence recurrence = PeriodicUpdateRecurrence.Hour;
+            PeriodicUpdateRecurrence recurrence = PeriodicUpdateRecurrence.HalfHour;
             TileUpdateManager.CreateTileUpdaterForApplication().StartPeriodicUpdateBatch(
 
                 new Uri[]
                 {
-                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=1"),
-                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=2"),
-                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=3"),
-                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=4"),
-                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=5")
+                    new Uri("http://tarabica.azure-mobile.net/api/gettilexml?id=1"),
+                    new Uri("http://tarabica.azure-mobile.net/api/gettilexml?id=2"),
+                    new Uri("http://tarabica.azure-mobile.net/api/gettilexml?id=3"),
+                    new Uri("http://tarabica.azure-mobile.net/api/gettilexml?id=4"),
+                    new Uri("http://tarabica.azure-mobile.net/api/gettilexml?id=5")
                 }, recurrence);
         }
 
