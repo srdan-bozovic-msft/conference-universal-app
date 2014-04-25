@@ -26,6 +26,7 @@ namespace Conference.App.Views
     {
         public SessionDetailsFlyoutView()
         {
+            this.SizeChanged += SessionDetailsFlyoutView_SizeChanged;
             this.InitializeComponent();
             var vm = DataContext as ViewModelBase;
             vm.PropertyChanged += vm_PropertyChanged;
@@ -37,6 +38,10 @@ namespace Conference.App.Views
             };
         }
 
+        void SessionDetailsFlyoutView_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            VScroll.Height = Height - 350;
+        }
 
         void vm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
