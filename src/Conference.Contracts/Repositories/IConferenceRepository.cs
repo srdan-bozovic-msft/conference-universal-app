@@ -1,4 +1,5 @@
 ﻿using Conference.Contracts.Models;
+using MsCampus.Win.Shared.Contracts.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Conference.Contracts.Repositories
 {
     public interface IConferenceRepository
     {
-        Task<ConferenceData> GetConferenceDataAsync();
-        Task<ConferenceData> GetConferenceDataAsync(CancellationToken cancellationToken);
+        Task<RepositoryResult<ConferenceData>> GetConferenceDataAsync();
+        Task<RepositoryResult<ConferenceData>> GetConferenceDataAsync(CancellationToken cancellationToken);
     }
 }

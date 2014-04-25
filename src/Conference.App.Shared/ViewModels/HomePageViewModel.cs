@@ -96,6 +96,20 @@ namespace Conference.ViewModels
             }
         }
 
+        private bool _isOffline;
+        public bool IsOffline
+        {
+            get
+            {
+                return _isOffline;
+            }
+            set
+            {
+                _isOffline = value;
+                RaisePropertyChanged("IsOffline");
+            }
+        }
+
         private INavigationService _navigationService;
         private IConferenceRepository _conferenceRepository;
         private IToastService _toastService;
@@ -155,11 +169,20 @@ namespace Conference.ViewModels
 
         public async void Initialize(object parameter)
         {
-            IsSynchronizing = true;
+            IsOffline = false;
+            IsSynchronizing = true;            
             var conferenceData = await _conferenceRepository.GetConferenceDataAsync();
+            if(!conferenceData.IsCurrent)
+            {
+                foreach (var speaker in conferenceData.Value.Speakers)
+                {
+                    speaker.PictureUrl = "/Data/SpeakerPhotos" + speaker.PictureUrl.Substring(speaker.PictureUrl.LastIndexOf('/'));
+                }
+            }
             IsSynchronizing = false;
-            SessionGroupTileInfos = GroupSessions(conferenceData);
-            SpeakerGroupTileInfos = GroupSpeakers(conferenceData.Speakers);
+            IsOffline = !conferenceData.IsCurrent;
+            SessionGroupTileInfos = GroupSessions(conferenceData.Value);
+            SpeakerGroupTileInfos = GroupSpeakers(conferenceData.Value.Speakers);
         }
 
         private static ObservableCollection<ISessionGroupTileInfo> GroupSessions(ConferenceData conferenceData)

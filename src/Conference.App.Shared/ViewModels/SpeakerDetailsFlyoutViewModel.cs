@@ -1,4 +1,5 @@
-﻿using Conference.Contracts.Repositories;
+﻿using Conference.Contracts.Models;
+using Conference.Contracts.Repositories;
 using Conference.Contracts.ViewModels;
 using Conference.Contracts.Views;
 using GalaSoft.MvvmLight;
@@ -103,11 +104,11 @@ namespace Conference.ViewModels
                 _navigatedFrom = ((Tuple<Type, int>)parameter).Item1;
                 var selectedSpeakerId = ((Tuple<Type, int>)parameter).Item2;
                 var data = await _conferenceRepository.GetConferenceDataAsync();
-                var speaker = data.Speakers.FirstOrDefault(s => s.Id == selectedSpeakerId);
-                var sessionSpeakerRelations = data.SessionSpeakerRelations.Where(s => s.SpeakerId == speaker.Id);
+                var speaker = data.Value.Speakers.FirstOrDefault(s => s.Id == selectedSpeakerId);
+                var sessionSpeakerRelations = data.Value.SessionSpeakerRelations.Where(s => s.SpeakerId == speaker.Id);
 
                 SpeakerName = String.Format("{0} {1}", speaker.FirstName, speaker.LastName);
-                ImageUrl = speaker.PictureUrl;
+                ImageUrl = data.IsCurrent ? speaker.PictureUrl : "/Data/SpeakerPhotos" + speaker.PictureUrl.Substring(speaker.PictureUrl.LastIndexOf('/'));
                 Bio = speaker.Bio;
                 CompanyString = String.Format("[{0}]", speaker.Company);
 
@@ -115,7 +116,7 @@ namespace Conference.ViewModels
 
                 foreach (var sessionSpeakerRelation in sessionSpeakerRelations)
                 {
-                    SessionTileInfos.Add(new SessionTileInfo(data.Sessions.Where(s => s.Id == sessionSpeakerRelation.SessionId).First(), data));
+                    SessionTileInfos.Add(new SessionTileInfo(data.Value.Sessions.Where(s => s.Id == sessionSpeakerRelation.SessionId).First(), data));
                 }
             }
             else

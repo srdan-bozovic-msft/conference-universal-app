@@ -239,9 +239,9 @@ namespace Conference.ViewModels
                 _navigatedFrom = ((Tuple<Type, int>)parameter).Item1;
                 var selectedSessionId = ((Tuple<Type, int>)parameter).Item2;
                 var data = await _conferenceRepository.GetConferenceDataAsync();
-                var session = data.Sessions.FirstOrDefault(s => s.Id == selectedSessionId);
-                var sessionSpeakerRelations = data.SessionSpeakerRelations.Where(s => s.SessionId == session.Id);
-                var slot = data.Slots.First(s => s.TimeLine == session.TimeLine);
+                var session = data.Value.Sessions.FirstOrDefault(s => s.Id == selectedSessionId);
+                var sessionSpeakerRelations = data.Value.SessionSpeakerRelations.Where(s => s.SessionId == session.Id);
+                var slot = data.Value.Slots.First(s => s.TimeLine == session.TimeLine);
 
                 TrackString = String.Format("[{0}]", TrackHelper.GetTitleForTrack(session.Track.TrimEnd()));
                 TrackImageUrl = TrackHelper.GetImageUrlForTrack(session.Track.TrimEnd());
@@ -249,12 +249,18 @@ namespace Conference.ViewModels
                 Description = session.Description;
                 Language = session.Lang;
                 Level = session.Level;
-                Room = data.Rooms.Where(r => r.Id == session.RoomId).First();
+                Room = data.Value.Rooms.Where(r => r.Id == session.RoomId).First();
                 TimeString = String.Format("{0:00}:{1:00} - {2:00}:{3:00}", slot.StartHour, slot.StartMinute, slot.EndHour, slot.EndMinute);
                 SpeakerTileInfos.Clear();
                 foreach (var sessionSpeakerRelation in sessionSpeakerRelations)
                 {
-                    SpeakerTileInfos.Add(new SpeakerTileInfo(data.Speakers.Where(s => s.Id == sessionSpeakerRelation.SpeakerId).First()));
+                    var speaker = data.Value.Speakers.Where(s => s.Id == sessionSpeakerRelation.SpeakerId).First();
+                    if(!data.IsCurrent)
+                    {
+                        speaker.PictureUrl = "/Data/SpeakerPhotos" + speaker.PictureUrl.Substring(speaker.PictureUrl.LastIndexOf('/'));
+                    }
+
+                    SpeakerTileInfos.Add(new SpeakerTileInfo(speaker));
                 }
             }
             else

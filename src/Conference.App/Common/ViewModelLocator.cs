@@ -14,6 +14,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Conference.Contracts.Models;
+using Newtonsoft.Json;
+using Windows.ApplicationModel;
+using Windows.Storage;
 
 namespace Conference.App.Common
 {
@@ -21,6 +25,18 @@ namespace Conference.App.Common
     {
         public ViewModelLocator()
         {
+            //Model registration
+            var folder = Package.Current.InstalledLocation;
+            var dataFolderHandle = folder.GetFolderAsync("Data").AsTask();
+            dataFolderHandle.Wait();
+            var fileHandle = dataFolderHandle.Result.GetFileAsync("data.json").AsTask();
+            fileHandle.Wait();
+            var readHandle = FileIO.ReadTextAsync(fileHandle.Result).AsTask();
+            readHandle.Wait();
+
+            InstanceFactory.RegisterInstance<ConferenceData>(
+                JsonConvert.DeserializeObject<ConferenceData>(readHandle.Result));
+
             //ViewModel registration
             InstanceFactory.RegisterType<IHomePageViewModel, HomePageViewModel>();
             InstanceFactory.RegisterWithTransientLifetime<ISessionDetailsFlyoutViewModel, SessionDetailsFlyoutViewModel>();

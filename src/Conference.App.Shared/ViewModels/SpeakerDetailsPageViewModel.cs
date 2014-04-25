@@ -1,4 +1,5 @@
-﻿using Conference.Contracts.Repositories;
+﻿using Conference.Contracts.Models;
+using Conference.Contracts.Repositories;
 using Conference.Contracts.ViewModels;
 using Conference.Contracts.Views;
 using GalaSoft.MvvmLight;
@@ -74,7 +75,7 @@ namespace Conference.ViewModels
             {
                 _navigatedFrom = ((Tuple<Type, int>)parameter).Item1;
                 var selectedSpeakerId = ((Tuple<Type, int>)parameter).Item2;
-                var data = await _conferenceRepository.GetConferenceDataAsync();
+                ConferenceData data = await _conferenceRepository.GetConferenceDataAsync();
                 var speaker = data.Speakers.FirstOrDefault(s => s.Id == selectedSpeakerId);
                 var sessionSpeakerRelations = data.SessionSpeakerRelations.Where(s => s.SpeakerId == speaker.Id);
 

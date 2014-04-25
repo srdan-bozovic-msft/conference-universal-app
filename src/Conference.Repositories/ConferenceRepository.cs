@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MsCampus.Win.Shared.Contracts.Repositories;
 
 namespace Conference.Repositories
 {
@@ -17,22 +18,25 @@ namespace Conference.Repositories
 
         private IConferenceDataService _conferenceDataService;
         private ICacheService _cacheService;
+        private ConferenceData _defaultConferenceData;
 
         public ConferenceRepository(
             IConferenceDataService conferenceDataService,
-            ICacheService cacheService)
+            ICacheService cacheService,
+            ConferenceData defaultConferenceData)
         {
             _conferenceDataService = conferenceDataService;
             _cacheService = cacheService;
+            _defaultConferenceData = defaultConferenceData;
         }
 
-        public async Task<ConferenceData> GetConferenceDataAsync()
+        public async Task<RepositoryResult<ConferenceData>> GetConferenceDataAsync()
         {
             var cts = new CancellationTokenSource();
             return await GetConferenceDataAsync(cts.Token);
         }
 
-        public async Task<ConferenceData> GetConferenceDataAsync(CancellationToken cancellationToken)
+        public async Task<RepositoryResult<ConferenceData>> GetConferenceDataAsync(CancellationToken cancellationToken)
         {
             var item = await _cacheService.GetAsync<ConferenceData>(ConferenceDataKey).ConfigureAwait(false);
             if (item.HasValue)
@@ -40,15 +44,29 @@ namespace Conference.Repositories
                 if (cancellationToken.IsCancellationRequested)
                     return item.Value;
                 var versionId = item.Value.Version;
-                var latestVersionId = await _conferenceDataService.GetVersionAsync(cancellationToken).ConfigureAwait(false);
-                if (versionId >= latestVersionId)
+                try
                 {
-                    return item.Value;
+                    var latestVersionId = await _conferenceDataService.GetVersionAsync(cancellationToken).ConfigureAwait(false);
+                    if (versionId >= latestVersionId)
+                    {
+                        return item.Value;
+                    }
+                }
+                catch
+                {
+                    return RepositoryResult<ConferenceData>.Create(item.Value, false);
                 }
             }
-            var data = await _conferenceDataService.GetConfDataAsync(cancellationToken).ConfigureAwait(false);
-            await _cacheService.PutAsync(ConferenceDataKey, data).ConfigureAwait(false);
-            return data;
+            try
+            {
+                var data = await _conferenceDataService.GetConfDataAsync(cancellationToken).ConfigureAwait(false);
+                await _cacheService.PutAsync(ConferenceDataKey, data).ConfigureAwait(false);
+                return data;
+            }
+            catch
+            {
+                return RepositoryResult<ConferenceData>.Create(item.HasValue ? item.Value : _defaultConferenceData, false);
+            }
         }
     }
 }
