@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Repositories\RepositoryResult.cs" />
     <Compile Include="Contracts\Services\ICacheItem.cs" />
+    <Compile Include="Contracts\Services\IRoamingSettingsService.cs" />
     <Compile Include="Contracts\Services\ICacheService.cs" />
     <Compile Include="Contracts\Services\IFlyoutService.cs" />
     <Compile Include="Contracts\Services\IHttpClient.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Implementation\Services\FlyoutService.cs" />
     <Compile Include="Implementation\Services\HttpClientService.cs" />
     <Compile Include="Implementation\Services\NavigationServiceBase.cs" />
+    <Compile Include="Implementation\Services\RoamingSettingsService.cs" />
     <Compile Include="Implementation\Services\StateService.cs" />
     <Compile Include="Implementation\Services\ToastService.cs" />
     <Compile Include="Implementation\Services\WindowsStorageCacheService.cs" />

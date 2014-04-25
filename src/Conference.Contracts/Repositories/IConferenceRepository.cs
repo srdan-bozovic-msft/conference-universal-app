@@ -13,5 +13,6 @@ namespace Conference.Contracts.Repositories
     {
         Task<RepositoryResult<ConferenceData>> GetConferenceDataAsync();
         Task<RepositoryResult<ConferenceData>> GetConferenceDataAsync(CancellationToken cancellationToken);
+        Task UpdateFavoriteStatusAsync(int sessionId, bool favorite);
     }
 }

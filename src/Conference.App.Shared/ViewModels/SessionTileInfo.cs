@@ -1,6 +1,7 @@
 ﻿using Conference.Contracts.Models;
 using Conference.Contracts.Models.Helpers;
 using Conference.Contracts.ViewModels;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Conference.ViewModels
 {
-    public class SessionTileInfo : ISessionTileInfo
+    public class SessionTileInfo : ViewModelBase, ISessionTileInfo
     {
         public SessionTileInfo(Session session, ConferenceData conferenceData)
         {
@@ -24,6 +25,7 @@ namespace Conference.ViewModels
 
             IsTrackThreeChars = session.Track.TrimEnd().Length == 3;
             IsTrackTwoChars = session.Track.TrimEnd().Length == 2;
+            IsFavorite = session.IsFavorite;
 
             var speakers = new List<string>();
             foreach (var relation in conferenceData.SessionSpeakerRelations.Where(r=>r.SessionId == session.Id))
@@ -114,5 +116,23 @@ namespace Conference.ViewModels
             get;
             private set;
         }
+
+        private bool _isFavorite;
+        public bool IsFavorite
+        {
+            get
+            {
+                return _isFavorite;
+            }
+            set
+            {
+                if(value != _isFavorite)
+                {
+                    _isFavorite = value;
+                    RaisePropertyChanged(() => IsFavorite);
+                }
+            }
+        }
+
     }
 }

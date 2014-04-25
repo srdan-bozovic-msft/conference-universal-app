@@ -95,6 +95,24 @@ namespace Conference.ViewModels
                     _navigatingToNextFlyout = true;
                     _flyoutService.ShowIndependent<ISpeakerDetailsFlyoutView>(new Tuple<Type, int>(typeof(ISessionDetailsFlyoutView), SelectedSpeakerId));
                 });
+
+            SwitchFavoriteCommand = new RelayCommand(
+                async () =>
+                {
+                    var value = !IsFavorite;
+                    await _conferenceRepository.UpdateFavoriteStatusAsync(_model.Id, value);
+                    IsFavorite = value;
+                    foreach (var sessionGroupTileInfo in _homePageViewModel.SessionGroupTileInfos)
+                    {
+                        foreach (var session in sessionGroupTileInfo.Sessions)
+                        {
+                            if(session.Id == _model.Id)
+                            {
+                                session.IsFavorite = IsFavorite;
+                            }
+                        }
+                    }
+                });
         }
         
         private string _trackString;
@@ -232,6 +250,25 @@ namespace Conference.ViewModels
                 }
             }
         }
+
+        public bool IsFavorite
+        {
+            get
+            {
+                return _model != null && _model.IsFavorite;
+            }
+            set
+            {
+                if (value != _model.IsFavorite)
+                {
+                    _model.IsFavorite = value;
+                }
+                RaisePropertyChanged(() => IsFavorite);
+            }
+        }
+
+        private Session _model;
+
         public async void Initialize(object parameter)
         {
             if (parameter != null)
@@ -239,17 +276,18 @@ namespace Conference.ViewModels
                 _navigatedFrom = ((Tuple<Type, int>)parameter).Item1;
                 var selectedSessionId = ((Tuple<Type, int>)parameter).Item2;
                 var data = await _conferenceRepository.GetConferenceDataAsync();
-                var session = data.Value.Sessions.FirstOrDefault(s => s.Id == selectedSessionId);
-                var sessionSpeakerRelations = data.Value.SessionSpeakerRelations.Where(s => s.SessionId == session.Id);
-                var slot = data.Value.Slots.First(s => s.TimeLine == session.TimeLine);
+                _model = data.Value.Sessions.FirstOrDefault(s => s.Id == selectedSessionId);
+                var sessionSpeakerRelations = data.Value.SessionSpeakerRelations.Where(s => s.SessionId == _model.Id);
+                var slot = data.Value.Slots.First(s => s.TimeLine == _model.TimeLine);
 
-                TrackString = String.Format("[{0}]", TrackHelper.GetTitleForTrack(session.Track.TrimEnd()));
-                TrackImageUrl = TrackHelper.GetImageUrlForTrack(session.Track.TrimEnd());
-                Title = session.Title;
-                Description = session.Description;
-                Language = session.Lang;
-                Level = session.Level;
-                Room = data.Value.Rooms.Where(r => r.Id == session.RoomId).First();
+                TrackString = String.Format("[{0}]", TrackHelper.GetTitleForTrack(_model.Track.TrimEnd()));
+                TrackImageUrl = TrackHelper.GetImageUrlForTrack(_model.Track.TrimEnd());
+                Title = _model.Title;
+                Description = _model.Description;
+                Language = _model.Lang;
+                Level = _model.Level;
+                Room = data.Value.Rooms.Where(r => r.Id == _model.RoomId).First();
+                IsFavorite = _model.IsFavorite;
                 TimeString = String.Format("{0:00}:{1:00} - {2:00}:{3:00}", slot.StartHour, slot.StartMinute, slot.EndHour, slot.EndMinute);
                 SpeakerTileInfos.Clear();
                 foreach (var sessionSpeakerRelation in sessionSpeakerRelations)
@@ -291,6 +329,11 @@ namespace Conference.ViewModels
             set;
         }
 
+        public ICommand SwitchFavoriteCommand
+        {
+            get;
+            set;
+        }
         public int SelectedSpeakerId { get; set; }
     }
 }

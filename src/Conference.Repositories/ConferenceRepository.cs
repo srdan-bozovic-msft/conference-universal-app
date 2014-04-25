@@ -18,15 +18,18 @@ namespace Conference.Repositories
 
         private IConferenceDataService _conferenceDataService;
         private ICacheService _cacheService;
+        private IRoamingSettingsService _roamingSettingService;
         private ConferenceData _defaultConferenceData;
 
         public ConferenceRepository(
             IConferenceDataService conferenceDataService,
             ICacheService cacheService,
+            IRoamingSettingsService roamingSettingService,
             ConferenceData defaultConferenceData)
         {
             _conferenceDataService = conferenceDataService;
             _cacheService = cacheService;
+            _roamingSettingService = roamingSettingService;
             _defaultConferenceData = defaultConferenceData;
         }
 
@@ -49,6 +52,7 @@ namespace Conference.Repositories
                     var latestVersionId = await _conferenceDataService.GetVersionAsync(cancellationToken).ConfigureAwait(false);
                     if (versionId >= latestVersionId)
                     {
+                        await SetFavoriteStatus(item.Value);
                         return item.Value;
                     }
                 }
@@ -61,12 +65,49 @@ namespace Conference.Repositories
             {
                 var data = await _conferenceDataService.GetConfDataAsync(cancellationToken).ConfigureAwait(false);
                 await _cacheService.PutAsync(ConferenceDataKey, data).ConfigureAwait(false);
+                await SetFavoriteStatus(data);
                 return data;
             }
             catch
             {
                 return RepositoryResult<ConferenceData>.Create(item.HasValue ? item.Value : _defaultConferenceData, false);
             }
+        }
+
+        private async Task SetFavoriteStatus(ConferenceData conferenceData)
+        {
+            var favoriteSessions = await _roamingSettingService.GetAsync<List<int>>("favorite");
+            if(favoriteSessions != null)
+            {
+                foreach (var session in conferenceData.Sessions)
+                {
+                    session.IsFavorite = favoriteSessions.Contains(session.Id);
+                }
+            }
+        }
+
+        public async Task UpdateFavoriteStatusAsync(int sessionId, bool favorite)
+        {
+            var favoriteSessions = await _roamingSettingService.GetAsync<List<int>>("favorite");
+            if(favoriteSessions == null)
+            {
+                favoriteSessions = new List<int>();
+            }
+            if(favorite)
+            {
+                if(!favoriteSessions.Contains(sessionId))
+                {
+                    favoriteSessions.Add(sessionId);
+                }
+            }
+            else
+            {
+                if(favoriteSessions.Contains(sessionId))
+                {
+                    favoriteSessions.Remove(sessionId);
+                }
+            }
+            await _roamingSettingService.PutAsync("favorite", favoriteSessions);
         }
     }
 }

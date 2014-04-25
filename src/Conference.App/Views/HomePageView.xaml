@@ -160,6 +160,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="20"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid>
                                         <Rectangle Fill="#ff67b8de" Height="100" Width="30"/>
@@ -176,11 +177,12 @@
                                     <Grid Grid.Column="1">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>                                           
+                                            <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                         <TextBlock Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" Margin="10,5,10,0" Style="{StaticResource TitleTextBlockStyle}" FontSize="16" />
                                         <TextBlock Grid.Row="1" Text="{Binding Speakers}" Foreground="#77ffffff"  TextWrapping="Wrap" TextTrimming="WordEllipsis" Margin="10,15,5,10" FontWeight="SemiLight"/>
                                     </Grid>
+                                    <TextBlock Text="*" Grid.Column="2" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding IsFavorite,Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                     <Interactivity:Interaction.Behaviors>
                                         <Core:EventTriggerBehavior EventName="Tapped">
                                             <Core:InvokeCommandAction Command="{Binding DataContext.SessionSelectedCommand, ElementName=LayoutRoot}" 
