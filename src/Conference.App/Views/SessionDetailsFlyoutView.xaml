@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Common="using:Conference.App.Common"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     DataContext="{Binding SessionDetailsFlyoutViewModel, Source={StaticResource MainViewModelLocator}}"
@@ -14,6 +15,11 @@
     d:DesignWidth="646" Margin="0,9,0,-9" Width="646" HeaderBackground="#67b8de"  
     ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden"
     >
+    
+    <SettingsFlyout.Resources>
+        <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Common:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter"/>
+    </SettingsFlyout.Resources>
 
     <Interactivity:Interaction.Behaviors>
         <Core:EventTriggerBehavior EventName="Loaded">
@@ -101,8 +107,8 @@
             </Grid>
             <Grid Grid.Row="3">
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="Favorite" ></Button>
-                    <Button Content="Unfavorite" ></Button>
+                    <Button Content="Favorite" Command="{Binding SwitchFavoriteCommand}" Visibility="{Binding IsFavorite, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"></Button>
+                    <Button Content="Unfavorite" Command="{Binding SwitchFavoriteCommand}" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"></Button>
                 </StackPanel>
             </Grid>
         </StackPanel>

@@ -62,5 +62,12 @@ namespace Conference.Contracts.Models
             get;
             set;
         }
+
+        public bool IsFavorite
+        {
+            get;
+            set;
+        }
+
     }
 }

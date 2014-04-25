@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Conference.Contracts.ViewModels
 {
-    public interface ISessionTileInfo
+    public interface ISessionTileInfo : INotifyPropertyChanged
     {
         int Id { get; }
         string Title { get; }
@@ -21,5 +22,6 @@ namespace Conference.Contracts.ViewModels
         string Language { get; }
         bool IsTrackTwoChars { get; }
         bool IsTrackThreeChars { get; }
+        bool IsFavorite { get; set; }
     }
 }

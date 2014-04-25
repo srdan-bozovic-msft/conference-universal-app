@@ -64,6 +64,7 @@ namespace Conference.App.Common
             InstanceFactory.RegisterType<IStateService, StateService>();
             InstanceFactory.RegisterType<ICacheService, WindowsStorageCacheService>();
             InstanceFactory.RegisterType<IFlyoutService, FlyoutService>();
+            InstanceFactory.RegisterType<IRoamingSettingsService, RoamingSettingsService>();
         }
 
 

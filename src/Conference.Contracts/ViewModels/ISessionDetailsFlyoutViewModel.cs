@@ -21,11 +21,14 @@ namespace Conference.Contracts.ViewModels
         int Level { get; set; }
         string TrackImageUrl { get; set; }
         Room Room { get; set; }
+        bool IsFavorite { get; set; }
         ObservableCollection<ISpeakerTileInfo> SpeakerTileInfos { get; set; }
         ICommand SpeakerSelectedCommand { get; set; }
         ICommand LoadedCommand { get; set; }
         ICommand UnloadedCommand { get; set; }
         ICommand BackClickCommand { get; set; }
+        ICommand SwitchFavoriteCommand { get; set; }
+
         int SelectedSpeakerId { get; set; }
     }
 }

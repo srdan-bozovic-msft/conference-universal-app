@@ -140,6 +140,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\StringToCharConverter.cs" />
     <Compile Include="Common\ViewModelLocator.cs" />
