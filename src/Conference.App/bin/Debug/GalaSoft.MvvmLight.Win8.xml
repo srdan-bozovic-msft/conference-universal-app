@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>GalaSoft.MvvmLight.WP8</name>
+        <name>GalaSoft.MvvmLight.Win8</name>
     </assembly>
     <members>
         <member name="T:GalaSoft.MvvmLight.Command.RelayCommand">
@@ -135,10 +135,11 @@
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.IExecuteWithObjectAndResult.ExecuteWithObject(System.Object)">
             <summary>
-            Executes a func and returns the result.
+            Executes a Func and returns the result.
             </summary>
             <param name="parameter">A parameter passed as an object,
             to be casted to the appropriate type.</param>
+            <returns>The result of the operation.</returns>
         </member>
         <member name="T:GalaSoft.MvvmLight.Helpers.WeakAction">
             <summary>
@@ -221,7 +222,7 @@
         </member>
         <member name="P:GalaSoft.MvvmLight.Helpers.WeakAction.ActionTarget">
             <summary>
-            
+            The target of the weak reference.
             </summary>
         </member>
         <member name="T:GalaSoft.MvvmLight.Helpers.WeakAction`1">
@@ -290,6 +291,8 @@
             Stores a Func&lt;T&gt; without causing a hard reference
             to be created to the Func's owner. The owner can be garbage collected at any time.
             </summary>
+            <typeparam name="TResult">The type of the result of the Func that will be stored
+            by this weak reference.</typeparam>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.#ctor">
             <summary>
@@ -300,20 +303,21 @@
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.#ctor(System.Object,System.Func{`0})">
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="target">The func's owner.</param>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="target">The Func's owner.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.Execute">
             <summary>
-            Executes the action. This only happens if the func's owner
+            Executes the action. This only happens if the Func's owner
             is still alive.
             </summary>
+            <returns>The result of the Func stored as reference.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.MarkForDeletion">
             <summary>
@@ -384,36 +388,38 @@
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.#ctor(System.Object,System.Func{`0,`1})">
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="target">The func's owner.</param>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="target">The Func's owner.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.Execute">
             <summary>
-            Executes the func. This only happens if the func's owner
-            is still alive. The func's parameter is set to default(T).
+            Executes the Func. This only happens if the Func's owner
+            is still alive. The Func's parameter is set to default(T).
             </summary>
+            <returns>The result of the Func stored as reference.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.Execute(`0)">
             <summary>
-            Executes the func. This only happens if the func's owner
+            Executes the Func. This only happens if the Func's owner
             is still alive.
             </summary>
             <param name="parameter">A parameter to be passed to the action.</param>
+            <returns>The result of the Func stored as reference.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.ExecuteWithObject(System.Object)">
             <summary>
-            Executes the func with a parameter of type object. This parameter
+            Executes the Func with a parameter of type object. This parameter
             will be casted to T. This method implements <see cref="M:GalaSoft.MvvmLight.Helpers.IExecuteWithObject.ExecuteWithObject(System.Object)"/>
             and can be useful if you store multiple WeakFunc{T} instances but don't know in advance
             what type T represents.
             </summary>
-            <param name="parameter">The parameter that will be passed to the func after
+            <param name="parameter">The parameter that will be passed to the Func after
             being casted to T.</param>
             <returns>The result of the execution as object, to be casted to T.</returns>
         </member>
@@ -447,15 +453,6 @@
             <summary>
             Cleans up the instance, for example by saving its state,
             removing resources, etc...
-            </summary>
-        </member>
-        <member name="T:GalaSoft.MvvmLight.Messaging.DialogMessage">
-            <summary>
-            Use this class to send a message requesting to display a message box with features
-            corresponding to this message's properties. The Callback property should be used
-            to notify the message's sender about the user's choice in the message box.
-            Typically, you can use this message typ's recipient will be an element of the View,
-            and the sender will possibly be a ViewModel.
             </summary>
         </member>
         <member name="T:GalaSoft.MvvmLight.Messaging.GenericMessage`1">
@@ -528,64 +525,6 @@
         <member name="P:GalaSoft.MvvmLight.Messaging.GenericMessage`1.Content">
             <summary>
             Gets or sets the message's content.
-            </summary>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Messaging.DialogMessage.#ctor(System.String,System.Action{System.Windows.MessageBoxResult})">
-            <summary>
-            Initializes a new instance of the DialogMessage class.
-            </summary>
-            <param name="content">The text displayed by the message box.</param>
-            <param name="callback">A callback method that should be executed to deliver the result
-            of the message box to the object that sent the message.</param>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Messaging.DialogMessage.#ctor(System.Object,System.String,System.Action{System.Windows.MessageBoxResult})">
-            <summary>
-            Initializes a new instance of the DialogMessage class.
-            </summary>
-            <param name="sender">The message's original sender.</param>
-            <param name="content">The text displayed by the message box.</param>
-            <param name="callback">A callback method that should be executed to deliver the result
-            of the message box to the object that sent the message.</param>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Messaging.DialogMessage.#ctor(System.Object,System.Object,System.String,System.Action{System.Windows.MessageBoxResult})">
-            <summary>
-            Initializes a new instance of the DialogMessage class.
-            </summary>
-            <param name="sender">The message's original sender.</param>
-            <param name="target">The message's intended target. This parameter can be used
-            to give an indication as to whom the message was intended for. Of course
-            this is only an indication, amd may be null.</param>
-            <param name="content">The text displayed by the message box.</param>
-            <param name="callback">A callback method that should be executed to deliver the result
-            of the message box to the object that sent the message.</param>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Messaging.DialogMessage.ProcessCallback(System.Windows.MessageBoxResult)">
-            <summary>
-            Utility method, checks if the <see cref="P:GalaSoft.MvvmLight.Messaging.DialogMessage.Callback"/> property is
-            null, and if it is not null, executes it.
-            </summary>
-            <param name="result">The result that must be passed
-            to the dialog message caller.</param>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Messaging.DialogMessage.Button">
-            <summary>
-            Gets or sets the buttons displayed by the message box.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Messaging.DialogMessage.Callback">
-            <summary>
-            Gets a callback method that should be executed to deliver the result
-            of the message box to the object that sent the message.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Messaging.DialogMessage.Caption">
-            <summary>
-            Gets or sets the caption for the message box.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Messaging.DialogMessage.DefaultResult">
-            <summary>
-            Gets or sets which result is the default in the message box.
             </summary>
         </member>
         <member name="T:GalaSoft.MvvmLight.Messaging.IMessenger">
@@ -1360,15 +1299,26 @@
             A base class for objects of which the properties must be observable.
             </summary>
         </member>
+        <member name="T:System.ComponentModel.INotifyPropertyChanging">
+            <summary>
+            Defines an event for notifying clients that a property value is changing.
+            </summary>
+        </member>
+        <member name="E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging">
+            <summary>
+            Occurs when a property value is changing.
+            </summary>
+        </member>
         <member name="M:GalaSoft.MvvmLight.ObservableObject.VerifyPropertyName(System.String)">
             <summary>
             Verifies that a property name exists in this ViewModel. This method
             can be called before the property is used, for instance before
             calling RaisePropertyChanged. It avoids errors when a property name
             is changed but some places are missed.
-            <para>This method is only active in DEBUG mode.</para>
             </summary>
-            <param name="propertyName"></param>
+            <remarks>This method is only active in DEBUG mode.</remarks>
+            <param name="propertyName">The name of the property that will be
+            checked.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanging(System.String)">
             <summary>
@@ -1377,7 +1327,7 @@
             <remarks>If the propertyName parameter
             does not correspond to an existing property on the current class, an
             exception is thrown in DEBUG configuration only.</remarks>
-            <param name="propertyName">The name of the property that
+            <param name="propertyName">(optional) The name of the property that
             changed.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanged(System.String)">
@@ -1387,7 +1337,7 @@
             <remarks>If the propertyName parameter
             does not correspond to an existing property on the current class, an
             exception is thrown in DEBUG configuration only.</remarks>
-            <param name="propertyName">The name of the property that
+            <param name="propertyName">(optional) The name of the property that
             changed.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanging``1(System.Linq.Expressions.Expression{System.Func{``0}})">
@@ -1450,6 +1400,22 @@
             false otherwise. The event is not raised if the old
             value is equal to the new value.</returns>
         </member>
+        <member name="M:GalaSoft.MvvmLight.ObservableObject.Set``1(``0@,``0,System.String)">
+            <summary>
+            Assigns a new value to the property. Then, raises the
+            PropertyChanged event if needed. 
+            </summary>
+            <typeparam name="T">The type of the property that
+            changed.</typeparam>
+            <param name="field">The field storing the property's value.</param>
+            <param name="newValue">The property's value after the change
+            occurred.</param>
+            <param name="propertyName">(optional) The name of the property that
+            changed.</param>
+            <returns>True if the PropertyChanged event has been raised,
+            false otherwise. The event is not raised if the old
+            value is equal to the new value.</returns>
+        </member>
         <member name="E:GalaSoft.MvvmLight.ObservableObject.PropertyChanged">
             <summary>
             Occurs after a property value changes.
@@ -1493,6 +1459,7 @@
             Invokes an action asynchronously on the UI thread.
             </summary>
             <param name="action">The action that must be executed.</param>
+            <returns>The object that provides handlers for the completed async event dispatch.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize">
             <summary>
@@ -1501,6 +1468,11 @@
             <para>In a Silverlight application, call this method in the
             Application_Startup event handler, after the MainPage is constructed.</para>
             <para>In WPF, call this method on the static App() constructor.</para>
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Reset">
+            <summary>
+            Resets the class by deleting the <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/>
             </summary>
         </member>
         <member name="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher">
@@ -1603,6 +1575,7 @@
             occurred.</param>
             <param name="broadcast">If true, a PropertyChangedMessage will
             be broadcasted. If false, only the event will be raised.</param>
+            <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.ViewModelBase.Set``1(System.String,``0@,``0,System.Boolean)">
             <summary>
@@ -1620,6 +1593,25 @@
             occurred.</param>
             <param name="broadcast">If true, a PropertyChangedMessage will
             be broadcasted. If false, only the event will be raised.</param>
+            <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.ViewModelBase.Set``1(``0@,``0,System.Boolean,System.String)">
+            <summary>
+            Assigns a new value to the property. Then, raises the
+            PropertyChanged event if needed, and broadcasts a
+            PropertyChangedMessage using the Messenger instance (or the
+            static default instance if no Messenger instance is available). 
+            </summary>
+            <typeparam name="T">The type of the property that
+            changed.</typeparam>
+            <param name="field">The field storing the property's value.</param>
+            <param name="newValue">The property's value after the change
+            occurred.</param>
+            <param name="broadcast">If true, a PropertyChangedMessage will
+            be broadcasted. If false, only the event will be raised.</param>
+            <param name="propertyName">(optional) The name of the property that
+            changed.</param>
+            <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
         </member>
         <member name="P:GalaSoft.MvvmLight.ViewModelBase.IsInDesignMode">
             <summary>
@@ -1639,6 +1631,30 @@
             broadcast messages to other objects. If null, this class will
             attempt to broadcast using the Messenger's default instance.
             </summary>
+        </member>
+        <member name="T:System.ComponentModel.PropertyChangingEventArgs">
+            <summary>
+            Provides data for the System.ComponentModel.INotifyPropertyChanging.PropertyChanging 
+            event.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.PropertyChangingEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.ComponentModel.PropertyChangingEventArgs class.
+            </summary>
+            <param name="propertyName">The name of the property that is changing.</param>
+        </member>
+        <member name="P:System.ComponentModel.PropertyChangingEventArgs.PropertyName">
+            <summary>
+            Gets the name of the property that is changing.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.PropertyChangingEventHandler">
+            <summary>
+            Represents a method that will handle the System.ComponentModel.INotifyPropertyChanging.PropertyChanging event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The event data.</param>
         </member>
     </members>
 </doc>

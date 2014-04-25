@@ -16,17 +16,26 @@ namespace DownloadSpeakerPhotosTool
         {
             var json = File.ReadAllText("data.json");
             var data = JsonConvert.DeserializeObject<ConferenceData>(json);
-            var client = new WebClient();
-            if(!Directory.Exists("SpeakerPhotos"))
+            var pictureUrls = data.Speakers.Select(s => s.PictureUrl);
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var pictureUrl in pictureUrls)
             {
-                Directory.CreateDirectory("SpeakerPhotos");
+                stringBuilder.Append(pictureUrl).Append(",");
             }
-            foreach (var speaker in data.Speakers)
-            {
-                var photoUrl = "http://tarabica.msforge.net/"+speaker.PictureUrl;
-                var photo = client.DownloadData(photoUrl);
-                File.WriteAllBytes("SpeakerPhotos" + photoUrl.Substring(photoUrl.LastIndexOf('/')), photo);
-            }
+            stringBuilder.Remove(stringBuilder.Length-1, 1);
+            string final = stringBuilder.ToString();
+
+            //var client = new WebClient();
+            //if(!Directory.Exists("SpeakerPhotos"))
+            //{
+            //    Directory.CreateDirectory("SpeakerPhotos");
+            //}
+            //foreach (var speaker in data.Speakers)
+            //{
+            //    var photoUrl = "http://tarabica.msforge.net/"+speaker.PictureUrl;
+            //    var photo = client.DownloadData(photoUrl);
+            //    File.WriteAllBytes("SpeakerPhotos" + photoUrl.Substring(photoUrl.LastIndexOf('/')), photo);
+            //}
         }
     }
 }

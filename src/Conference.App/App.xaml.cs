@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.ApplicationSettings;
 using MsCampus.Win.Shared.Implementation.Services;
 using Conference.Contracts.Views;
+using Windows.UI.Notifications;
 
 // The Grid App template is documented at http://go.microsoft.com/fwlink/?LinkId=234226
 
@@ -129,6 +130,20 @@ namespace Conference.App
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
+            
+            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
+
+            PeriodicUpdateRecurrence recurrence = PeriodicUpdateRecurrence.Hour;
+            TileUpdateManager.CreateTileUpdaterForApplication().StartPeriodicUpdateBatch(
+
+                new Uri[]
+                {
+                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=1"),
+                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=2"),
+                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=3"),
+                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=4"),
+                    new Uri("https://tarabica.azure-mobile.net/api/gettilexml?id=5")
+                }, recurrence);
         }
 
         private void OnCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
