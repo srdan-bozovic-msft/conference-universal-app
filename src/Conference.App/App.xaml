@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="Common/CustomStyles.xaml" />
                 <ResourceDictionary>
                     <x:String x:Key="AppName">Tarabica # IT Conference</x:String>
-                    <localCommon:ViewModelLocator x:Key="MainViewModelLocator"  />
+                    <localCommon:ViewModelLocator x:Key="MainViewModelLocator"  />        
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

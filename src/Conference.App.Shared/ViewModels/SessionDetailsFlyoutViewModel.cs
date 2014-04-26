@@ -114,7 +114,14 @@ namespace Conference.ViewModels
                     }
                 });
         }
-        
+        public string FavoriteText
+        {
+            get
+            {
+                return IsFavorite ? "UnFavorite" : "Favorite";
+            }
+        }       
+
         private string _trackString;
         public string TrackString
         {
@@ -264,6 +271,7 @@ namespace Conference.ViewModels
                     _model.IsFavorite = value;
                 }
                 RaisePropertyChanged(() => IsFavorite);
+                RaisePropertyChanged(() => FavoriteText);
             }
         }
 

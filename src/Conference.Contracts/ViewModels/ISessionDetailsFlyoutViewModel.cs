@@ -20,6 +20,7 @@ namespace Conference.Contracts.ViewModels
         string TimeString { get; set; }
         int Level { get; set; }
         string TrackImageUrl { get; set; }
+        string FavoriteText { get; }
         Room Room { get; set; }
         bool IsFavorite { get; set; }
         ObservableCollection<ISpeakerTileInfo> SpeakerTileInfos { get; set; }

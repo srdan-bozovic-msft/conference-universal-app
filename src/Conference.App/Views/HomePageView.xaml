@@ -182,7 +182,9 @@
                                         <TextBlock Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" Margin="10,5,10,0" Style="{StaticResource TitleTextBlockStyle}" FontSize="16" />
                                         <TextBlock Grid.Row="1" Text="{Binding Speakers}" Foreground="#77ffffff"  TextWrapping="Wrap" TextTrimming="WordEllipsis" Margin="10,15,5,10" FontWeight="SemiLight"/>
                                     </Grid>
-                                    <TextBlock Text="*" Grid.Column="2" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding IsFavorite,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                    <Path Grid.Column="2" VerticalAlignment="Top" Margin="-15,0,0,0" Visibility="{Binding IsFavorite,Converter={StaticResource BooleanToVisibilityConverter}}" Data="M21.612764,28.782L16.664854,38.804401 5.6049995,40.410786 13.608848,48.213509 11.720843,59.23 21.612764,54.027851 31.505287,59.23 29.616682,48.213509 37.619999,40.410786 26.560776,38.804401z M5.0559998,0L25.299053,0C31.06522,0.12792937,31.960999,5.5077834,31.960999,5.5077839L31.960999,36.954079 43.227001,38.590984 32.41975,49.125111 34.969139,64 21.6131,56.97665 8.2563725,64 10.80585,49.125111 0,38.590984 10.949183,37.000015 10.949183,5.5077839C10.308498,0.63964492,5.0559993,0,5.0559998,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="18" Height="18" RenderTransformOrigin="0.5,0.5"/>
+
                                     <Interactivity:Interaction.Behaviors>
                                         <Core:EventTriggerBehavior EventName="Tapped">
                                             <Core:InvokeCommandAction Command="{Binding DataContext.SessionSelectedCommand, ElementName=LayoutRoot}" 
