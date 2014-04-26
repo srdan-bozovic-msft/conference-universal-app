@@ -33,8 +33,8 @@ namespace MsCampus.Win.Shared.Implementation.Services
 
         public void LoadState()
         {
-            ViewName = _localSettings.Values["viewName"].ToString();
-            Parameter = _localSettings.Values["parameter"].ToString();
+            ViewName = (_localSettings.Values["viewName"]??"").ToString();
+            Parameter = (_localSettings.Values["parameter"]??"").ToString();
         }
     }
 }
