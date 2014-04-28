@@ -12,7 +12,10 @@
                 <ResourceDictionary Source="Common/CustomStyles.xaml" />
                 <ResourceDictionary>
                     <x:String x:Key="AppName">Tarabica # IT Conference</x:String>
-                    <localCommon:ViewModelLocator x:Key="MainViewModelLocator"  />        
+                    <localCommon:ViewModelLocator x:Key="MainViewModelLocator"  />
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush" Color="#67b8de"/>
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainPointerOverBackgroundThemeBrush" Color="#7ED5E7" />
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainPressedBackgroundThemeBrush" Color="#AA7ED5E7" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -60,6 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MsCampus.Win.Shared.CustomControls\MsCampus.Win.Shared.CustomControls.csproj">
+      <Project>{81611f5c-f3a0-41f5-8b17-3de3efddb286}</Project>
+      <Name>MsCampus.Win.Shared.CustomControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MsCampus.Win.Shared.DI\MsCampus.Win.Shared.DI.csproj">
       <Project>{75151eb4-f2ea-4e24-b764-d04ab127af30}</Project>
       <Name>MsCampus.Win.Shared.DI</Name>

@@ -1,4 +1,4 @@
-﻿<SettingsFlyout
+﻿<Controls:CustomSettingsFlyout
     x:Class="Conference.App.Views.SpeakerDetailsFlyoutView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Controls="using:MsCampus.Win.Shared.CustomControls"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     DataContext="{Binding SpeakerDetailsFlyoutViewModel, Source={StaticResource MainViewModelLocator}}"
@@ -97,4 +98,4 @@
         </StackPanel>
     </Grid>
 
-</SettingsFlyout>
+</Controls:CustomSettingsFlyout>

@@ -9,7 +9,7 @@
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:Common="using:Conference.App.Common"
-    xmlns:CustomControls="using:Conference.App.Controls"
+    xmlns:CustomControls="using:MsCampus.Win.Shared.CustomControls"
 	mc:Ignorable="d" SizeChanged="Page_SizeChanged"
     >
 
@@ -43,9 +43,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <Rectangle Canvas.ZIndex="1" Grid.RowSpan="2" Fill="#77000000" Visibility="{Binding IsModal, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <Grid Grid.Row="1">
 
@@ -378,6 +377,11 @@
 
         </Grid>
 
+        <Rectangle Grid.RowSpan="3" Fill="#77000000" Visibility="{Binding IsModal, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <ToggleSwitch x:Name ="toggleSwitch" Grid.Row="1" IsOn="{Binding IsFavoritesMode, Mode=TwoWay}" OnContent="Odabrana predavanja" FontSize="15" OffContent="Sva predavanja" VerticalAlignment="Bottom" Background="#FF333333"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="DefaultLayout">
@@ -420,6 +424,9 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="speakersSemanticZoom" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="toggleSwitch" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Speakers">
@@ -429,6 +436,9 @@
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="speakersSemanticZoom" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="toggleSwitch" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

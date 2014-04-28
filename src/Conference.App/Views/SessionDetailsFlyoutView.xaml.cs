@@ -3,6 +3,7 @@ using Conference.Contracts.Views;
 using Conference.ViewModels;
 using GalaSoft.MvvmLight;
 using MsCampus.Win.Shared.Contracts.ViewModels;
+using MsCampus.Win.Shared.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Conference.App.Views
 {
-    public sealed partial class SessionDetailsFlyoutView : SettingsFlyout, ISessionDetailsFlyoutView
+    public sealed partial class SessionDetailsFlyoutView : CustomSettingsFlyout, ISessionDetailsFlyoutView
     {
         public SessionDetailsFlyoutView()
         {
@@ -35,7 +36,7 @@ namespace Conference.App.Views
                 var height = await WebView.InvokeScriptAsync("getDocHeight", null);
                 if (!string.IsNullOrEmpty(height))
                     WebView.Height = int.Parse(height);
-            };
+            };  
         }
 
         void SessionDetailsFlyoutView_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -69,6 +70,12 @@ namespace Conference.App.Views
             {
                 return this.DataContext as IPageViewModel;
             }
+        }
+
+        private void CustomSettingsFlyout_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if ((this.DataContext as ISessionDetailsFlyoutViewModel).IsLightDismissedEnabled == false)
+                (this.DataContext as ISessionDetailsFlyoutViewModel).IsLightDismissedEnabled = true;
         }
     }
 }

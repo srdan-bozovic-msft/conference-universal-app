@@ -1466,6 +1466,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
+    </Style>  
 </ResourceDictionary>

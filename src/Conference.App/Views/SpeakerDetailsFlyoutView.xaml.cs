@@ -2,6 +2,7 @@
 using Conference.Contracts.Views;
 using GalaSoft.MvvmLight;
 using MsCampus.Win.Shared.Contracts.ViewModels;
+using MsCampus.Win.Shared.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +22,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Conference.App.Views
 {
-    public sealed partial class SpeakerDetailsFlyoutView : SettingsFlyout, ISpeakerDetailsFlyoutView
+    public sealed partial class SpeakerDetailsFlyoutView : CustomSettingsFlyout, ISpeakerDetailsFlyoutView
     {
         public SpeakerDetailsFlyoutView()
         {

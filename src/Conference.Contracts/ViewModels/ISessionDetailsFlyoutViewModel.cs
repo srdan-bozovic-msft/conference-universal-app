@@ -23,12 +23,16 @@ namespace Conference.Contracts.ViewModels
         string FavoriteText { get; }
         Room Room { get; set; }
         bool IsFavorite { get; set; }
+        bool IsLightDismissedEnabled { get; set; }
+
+        bool IsOpen { get; set; }
         ObservableCollection<ISpeakerTileInfo> SpeakerTileInfos { get; set; }
         ICommand SpeakerSelectedCommand { get; set; }
         ICommand LoadedCommand { get; set; }
         ICommand UnloadedCommand { get; set; }
         ICommand BackClickCommand { get; set; }
         ICommand SwitchFavoriteCommand { get; set; }
+        ICommand ShareCommand { get; set; }
 
         int SelectedSpeakerId { get; set; }
     }

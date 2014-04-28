@@ -13,6 +13,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 
 namespace Conference.ViewModels
@@ -28,7 +33,7 @@ namespace Conference.ViewModels
 
         private bool _navigatingToNextFlyout;
         private Type _navigatedFrom;
-
+        private int _selectedSessionId;
         public SessionDetailsFlyoutViewModel(
             INavigationService navigationService,
             IConferenceRepository conferenceRepository,
@@ -42,7 +47,54 @@ namespace Conference.ViewModels
 
             _speakerTileInfos = new ObservableCollection<ISpeakerTileInfo>();
 
+            registerShare();
             InitializeCommands();
+        }
+
+        private void registerShare()
+        {
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager, DataRequestedEventArgs>(
+                async (sender, e) =>
+                {
+                    DataRequest request = e.Request;
+                    // The Title is mandatory
+                    request.Data.Properties.Title = String.Format("[Tarabica 14] {0}", Title);
+                    request.Data.Properties.Description = Title;
+                    request.Data.SetWebLink(new Uri(String.Format("http://tarabica.msforge.net/Session/Details/{0}", _selectedSessionId)));
+
+                    StringBuilder html = new StringBuilder();
+                    html.Append("<div style=\"font-family:segoe ui; background-color:#67b8de; color:#ffffff;\"><div style=\"margin:10px;\"><h3>")
+                        .AppendFormat("Posetite predavanje {0} {1} na Tarabici", Title, TrackString).Append("</h3>")
+                        .Append(Description)
+                        .Append("<h4><ul>");
+
+                    foreach (var speaker in _speakerTileInfos)
+                    {
+                        html.AppendFormat("<li>{0} ({1})</li>", speaker.SpeakerName, String.Format("<a href=\"http://tarabica.msforge.net/Speaker/Details/{0}\">Biografija</a>", speaker.SpeakerId));
+                    }
+
+                    html.AppendFormat("</ul></h4><h5>Vreme: {0} (5. april 2014.)</br>Sala: {1} (Univerzitet Singidunum, Kumodraška 261)</br></br>Više informacija na: <a href=\"http://tarabica.msforge.net\">http://tarabica.msforge.net</a></h5></div></div>", TimeString, Room.Code);
+
+                    request.Data.SetHtmlFormat(HtmlFormatHelper.CreateHtmlFormat(html.ToString()));
+
+                    DataRequestDeferral deferral = request.GetDeferral();
+
+                    try
+                    {
+                        StorageFile thumbnailFile =
+                            await Package.Current.InstalledLocation.GetFileAsync("Assets\\SquareLogo30x30.scale-100.png");
+                        request.Data.Properties.Thumbnail =
+                            RandomAccessStreamReference.CreateFromFile(thumbnailFile);
+                        StorageFile imageFile =
+                            await Package.Current.InstalledLocation.GetFileAsync("Assets\\SquareLogo70x70.scale-100.png");
+                        request.Data.SetBitmap(RandomAccessStreamReference.CreateFromFile(imageFile));
+                    }
+                    finally
+                    {
+                        deferral.Complete();
+                    }
+                });
         }
 
         public ObservableCollection<ISpeakerTileInfo> SpeakerTileInfos
@@ -94,6 +146,7 @@ namespace Conference.ViewModels
                     _homePageViewModel.SelectedSpeakerId = speakerTileInfo.SpeakerId;
                     _navigatingToNextFlyout = true;
                     _flyoutService.ShowIndependent<ISpeakerDetailsFlyoutView>(new Tuple<Type, int>(typeof(ISessionDetailsFlyoutView), SelectedSpeakerId));
+                    IsOpen = false;
                 });
 
             SwitchFavoriteCommand = new RelayCommand(
@@ -101,24 +154,25 @@ namespace Conference.ViewModels
                 {
                     var value = !IsFavorite;
                     await _conferenceRepository.UpdateFavoriteStatusAsync(_model.Id, value);
-                    IsFavorite = value;
-                    foreach (var sessionGroupTileInfo in _homePageViewModel.SessionGroupTileInfos)
-                    {
-                        foreach (var session in sessionGroupTileInfo.Sessions)
-                        {
-                            if(session.Id == _model.Id)
-                            {
-                                session.IsFavorite = IsFavorite;
-                            }
-                        }
-                    }
+                    IsFavorite = value;    
+
+                    _homePageViewModel.UpdateFavoriteSession(_model.Id);
+                });
+
+            ShareCommand = new RelayCommand(
+                () =>
+                {
+                    _navigatingToNextFlyout = true;
+                    IsLightDismissedEnabled = false;
+                    Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
                 });
         }
+
         public string FavoriteText
         {
             get
             {
-                return IsFavorite ? "UnFavorite" : "Favorite";
+                return IsFavorite ? "Ukloni" : "Odaberi";
             }
         }       
 
@@ -275,6 +329,40 @@ namespace Conference.ViewModels
             }
         }
 
+        private bool _isLightDismissedEnabled = true;
+        public bool IsLightDismissedEnabled
+        {
+            get
+            {
+                return _isLightDismissedEnabled;
+            }
+            set
+            {
+                if (value != _isLightDismissedEnabled)
+                {
+                    _isLightDismissedEnabled = value;
+                    RaisePropertyChanged(() => IsLightDismissedEnabled);
+                }
+            }
+        }
+
+        private bool _isOpen = true;
+        public bool IsOpen
+        {
+            get
+            {
+                return _isOpen;
+            }
+            set
+            {
+                if (value != _isOpen)
+                {
+                    _isOpen = value;
+                    RaisePropertyChanged(() => IsOpen);
+                }
+            }
+        }
+
         private Session _model;
 
         public async void Initialize(object parameter)
@@ -282,9 +370,9 @@ namespace Conference.ViewModels
             if (parameter != null)
             {
                 _navigatedFrom = ((Tuple<Type, int>)parameter).Item1;
-                var selectedSessionId = ((Tuple<Type, int>)parameter).Item2;
+                _selectedSessionId = ((Tuple<Type, int>)parameter).Item2;
                 var data = await _conferenceRepository.GetConferenceDataAsync();
-                _model = data.Value.Sessions.FirstOrDefault(s => s.Id == selectedSessionId);
+                _model = data.Value.Sessions.FirstOrDefault(s => s.Id == _selectedSessionId);
                 var sessionSpeakerRelations = data.Value.SessionSpeakerRelations.Where(s => s.SessionId == _model.Id);
                 var slot = data.Value.Slots.First(s => s.TimeLine == _model.TimeLine);
 
@@ -338,6 +426,12 @@ namespace Conference.ViewModels
         }
 
         public ICommand SwitchFavoriteCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand ShareCommand
         {
             get;
             set;

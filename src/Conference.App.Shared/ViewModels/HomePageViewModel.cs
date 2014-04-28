@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Conference.Contracts.Views;
 using System.Net;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 #if WINDOWS_PHONE_APP
 using Conference.PhoneApp.Views;
 #endif
@@ -21,7 +22,7 @@ namespace Conference.ViewModels
 {
     public class HomePageViewModel : TabPageViewModel, IHomePageViewModel
     {
-
+        private ConferenceData _conferenceData;
         private ObservableCollection<ISessionGroupTileInfo> _sessionGroupTileInfos;
         public ObservableCollection<ISessionGroupTileInfo> SessionGroupTileInfos
         {
@@ -33,6 +34,34 @@ namespace Conference.ViewModels
             {
                 _sessionGroupTileInfos = value;
                 RaisePropertyChanged("SessionGroupTileInfos");
+            }
+        }
+
+        private ObservableCollection<ISessionGroupTileInfo> _allSessionGroupTileInfos;
+        public ObservableCollection<ISessionGroupTileInfo> AllSessionGroupTileInfos
+        {
+            get
+            {
+                return _allSessionGroupTileInfos;
+            }
+            set
+            {
+                _allSessionGroupTileInfos = value;
+                RaisePropertyChanged("AllSessionGroupTileInfos");
+            }
+        }
+
+        private ObservableCollection<ISessionGroupTileInfo> _favoriteSessionGroupTileInfos;
+        public ObservableCollection<ISessionGroupTileInfo> FavoriteSessionGroupTileInfos
+        {
+            get
+            {
+                return _favoriteSessionGroupTileInfos;
+            }
+            set
+            {
+                _favoriteSessionGroupTileInfos = value;
+                RaisePropertyChanged("FavoriteSessionGroupTileInfos");
             }
         }
 
@@ -57,6 +86,12 @@ namespace Conference.ViewModels
         }
 
         public ICommand SpeakerSelectedCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand FavoritesToggledCommand
         {
             get;
             set;
@@ -93,6 +128,22 @@ namespace Conference.ViewModels
             {
                 _isSynchronizing = value;
                 RaisePropertyChanged("IsSynchronizing");
+            }
+        }
+
+        private bool _isFavoritesMode;
+        public bool IsFavoritesMode
+        {
+            get
+            {
+                return _isFavoritesMode;
+            }
+            set
+            {
+                _isFavoritesMode = value;
+                RaisePropertyChanged("IsFavoritesMode");
+
+                SessionGroupTileInfos = _isFavoritesMode ? FavoriteSessionGroupTileInfos : AllSessionGroupTileInfos;
             }
         }
 
@@ -171,25 +222,49 @@ namespace Conference.ViewModels
         {
             IsOffline = false;
             IsSynchronizing = true;            
-            var conferenceData = await _conferenceRepository.GetConferenceDataAsync();
-            if(!conferenceData.IsCurrent)
+            var res = await _conferenceRepository.GetConferenceDataAsync();
+            _conferenceData = res.Value; 
+
+            if(!res.IsCurrent)
             {
-                foreach (var speaker in conferenceData.Value.Speakers)
+                foreach (var speaker in res.Value.Speakers)
                 {
                     speaker.PictureUrl = "/Data/SpeakerPhotos" + speaker.PictureUrl.Substring(speaker.PictureUrl.LastIndexOf('/'));
                 }
             }
             IsSynchronizing = false;
-            IsOffline = !conferenceData.IsCurrent;
-            SessionGroupTileInfos = GroupSessions(conferenceData.Value);
-            SpeakerGroupTileInfos = GroupSpeakers(conferenceData.Value.Speakers);
+            IsOffline = !res.IsCurrent;
+
+            refreshSessions();
+            SpeakerGroupTileInfos = GroupSpeakers(res.Value.Speakers);
         }
 
-        private static ObservableCollection<ISessionGroupTileInfo> GroupSessions(ConferenceData conferenceData)
+        private void refreshSessions()
+        {
+            AllSessionGroupTileInfos = GroupSessions(_conferenceData);
+            FavoriteSessionGroupTileInfos = GroupSessions(_conferenceData, true);
+
+            SessionGroupTileInfos = IsFavoritesMode ? FavoriteSessionGroupTileInfos : AllSessionGroupTileInfos;
+        }
+
+        public void UpdateFavoriteSession(int sessionId)
+        {
+            foreach (var session in _conferenceData.Sessions)
+            {
+                if (session.Id == sessionId)
+                    session.IsFavorite = !session.IsFavorite;
+            }
+
+            refreshSessions();
+        }
+        private static ObservableCollection<ISessionGroupTileInfo> GroupSessions(ConferenceData conferenceData, bool isFavoritesMode = false)
         {
             var sessionGroupTileInfoList = new List<SessionGroupTileInfo>();
             var groupHeaders = conferenceData.Slots.OrderBy(s=>s.StartHour*100+s.StartMinute).Select(s => string.Format("{0:00}:{1:00}", s.StartHour, s.StartMinute)).Distinct().ToArray();
-            var sessionInfos = conferenceData.Sessions.Select(s => new SessionTileInfo(s, conferenceData)).OrderBy(s=>s.Starts);
+            var sessionInfos = 
+                isFavoritesMode ?
+                conferenceData.Sessions.Where(s => s.IsFavorite == true).Select(s => new SessionTileInfo(s, conferenceData)).OrderBy(s=>s.Starts) :
+                conferenceData.Sessions.Select(s => new SessionTileInfo(s, conferenceData)).OrderBy(s=>s.Starts);
             var groups = new Dictionary<string, SessionGroupTileInfo>();
 
             foreach (string header in groupHeaders)

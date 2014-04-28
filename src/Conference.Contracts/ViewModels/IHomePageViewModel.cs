@@ -14,13 +14,18 @@ namespace Conference.Contracts.ViewModels
         ObservableCollection<ISpeakerGroupTileInfo> SpeakerGroupTileInfos { get; set; }
         ICommand SpeakerSelectedCommand { get; set; }
         ObservableCollection<ISessionGroupTileInfo> SessionGroupTileInfos { get; set; }
-        ICommand SessionSelectedCommand { get; set; }
 
+        ObservableCollection<ISessionGroupTileInfo> FavoriteSessionGroupTileInfos { get; set; }
+
+        ObservableCollection<ISessionGroupTileInfo> AllSessionGroupTileInfos { get; set; }
+
+        void UpdateFavoriteSession(int sessionId);
+        ICommand SessionSelectedCommand { get; set; }
         ICommand ShowMapCommand { get; set; }
         int SelectedSessionId { get; set; }
         int SelectedSpeakerId { get; set; }
         bool IsModal { get; set; }
-
+        bool IsFavoritesMode { get; set; }
         bool IsSynchronizing { get; set; }
     }
 }

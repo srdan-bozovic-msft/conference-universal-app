@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{850E8254
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadSpeakerPhotosTool", "DownloadSpeakerPhotosTool\DownloadSpeakerPhotosTool.csproj", "{7A2187AF-1195-4140-AF5C-581F2B6096AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsCampus.Win.Shared.CustomControls", "MsCampus.Win.Shared.CustomControls\MsCampus.Win.Shared.CustomControls.csproj", "{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Conference.App.Shared\Conference.App.Shared.projitems*{7ee35e18-a459-4a3a-8720-f937d16e6dff}*SharedItemsImports = 13
@@ -162,6 +164,16 @@ Global
 		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|ARM.ActiveCfg = Release|Any CPU
 		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|x64.ActiveCfg = Release|Any CPU
 		{7A2187AF-1195-4140-AF5C-581F2B6096AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Release|ARM.ActiveCfg = Release|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Release|x64.ActiveCfg = Release|Any CPU
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +190,6 @@ Global
 		{7EE35E18-A459-4A3A-8720-F937D16E6DFF} = {A7EBE289-2B71-4231-9E20-DF4038563B91}
 		{5954AE5D-6A78-448A-8F80-61B5B1CD9A70} = {A7EBE289-2B71-4231-9E20-DF4038563B91}
 		{7A2187AF-1195-4140-AF5C-581F2B6096AB} = {850E8254-8F7C-455C-8039-67E2393F0437}
+		{81611F5C-F3A0-41F5-8B17-3DE3EFDDB286} = {9508A921-ECAE-4CF5-A989-06C75738F074}
 	EndGlobalSection
 EndGlobal

@@ -12,7 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 
-namespace Conference.App.Controls
+namespace MsCampus.Win.Shared.CustomControls
 {
     public class AutoRotatingGridView : GridView
     {

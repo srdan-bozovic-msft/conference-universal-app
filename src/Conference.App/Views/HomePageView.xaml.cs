@@ -100,6 +100,7 @@ namespace Conference.App.Views
             {
                 VisualStateManager.GoToState(this, "DefaultLayout", true);
             }
-        }	
+        }
+
     }
 }

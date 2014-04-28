@@ -127,6 +127,10 @@
       <Project>{d2e748ff-30e8-46f8-81f7-697cf2bbc570}</Project>
       <Name>Conference.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MsCampus.Win.Shared.CustomControls\MsCampus.Win.Shared.CustomControls.csproj">
+      <Project>{81611f5c-f3a0-41f5-8b17-3de3efddb286}</Project>
+      <Name>MsCampus.Win.Shared.CustomControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MsCampus.Win.Shared.DI\MsCampus.Win.Shared.DI.csproj">
       <Project>{75151eb4-f2ea-4e24-b764-d04ab127af30}</Project>
       <Name>MsCampus.Win.Shared.DI</Name>
@@ -144,7 +148,6 @@
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\StringToCharConverter.cs" />
     <Compile Include="Common\ViewModelLocator.cs" />
-    <Compile Include="Controls\AutoRotatingGridView.cs" />
     <Compile Include="ErrorPage.xaml.cs">
       <DependentUpon>ErrorPage.xaml</DependentUpon>
     </Compile>
