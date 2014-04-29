@@ -15,9 +15,9 @@ namespace Conference.Contracts.Models.Helpers
                 case "ALM":
                     return "Application Lifecycle & Project Management";
                 case "APM":
-                    return "Agile Project Management";
+                    return "Agile i upravljanje projektima";
                 case "CLD":
-                    return "Cloud, Azure App Development";
+                    return "Cloud, Azure app Development";
                 case "DBI":
                     return "Data Platform & Bussiness Intelligence";
                 case "DEV":
@@ -35,7 +35,9 @@ namespace Conference.Contracts.Models.Helpers
                 case "WEB":
                     return "Web Development";
                 case "UX":
-                    return "User Experience";
+                    return "Korisničko iskustvo";
+                case "MSC":
+                    return "Other";
                 default:
                     return String.Empty;
             }

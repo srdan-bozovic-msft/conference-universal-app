@@ -41,7 +41,7 @@ namespace Conference.App.Views
 
         void SessionDetailsFlyoutView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            VScroll.Height = Height - 350;
+            VScroll.Height = Height - 310;
         }
 
         void vm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -75,7 +75,11 @@ namespace Conference.App.Views
         private void CustomSettingsFlyout_GotFocus(object sender, RoutedEventArgs e)
         {
             if ((this.DataContext as ISessionDetailsFlyoutViewModel).IsLightDismissedEnabled == false)
+            {
                 (this.DataContext as ISessionDetailsFlyoutViewModel).IsLightDismissedEnabled = true;
+                (this.DataContext as ISessionDetailsFlyoutViewModel).ShareOpened = false;
+            }
+
         }
     }
 }

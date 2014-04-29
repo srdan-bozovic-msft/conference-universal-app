@@ -243,6 +243,7 @@
     <Content Include="Assets\Tracks\DVC.png" />
     <Content Include="Assets\Tracks\DYN.png" />
     <Content Include="Assets\Tracks\GAM.png" />
+    <Content Include="Assets\Tracks\MSC.png" />
     <Content Include="Assets\Tracks\SES.png" />
     <Content Include="Assets\Tracks\SRV.png" />
     <Content Include="Assets\Tracks\UX.png" />

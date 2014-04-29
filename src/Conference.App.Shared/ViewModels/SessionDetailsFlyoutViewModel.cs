@@ -65,7 +65,7 @@ namespace Conference.ViewModels
 
                     StringBuilder html = new StringBuilder();
                     html.Append("<div style=\"font-family:segoe ui; background-color:#67b8de; color:#ffffff;\"><div style=\"margin:10px;\"><h3>")
-                        .AppendFormat("Posetite predavanje {0} {1} na Tarabici", Title, TrackString).Append("</h3>")
+                        .AppendFormat("Posetite predavanje {0} {1} na Tarabici!", Title, TrackString).Append("</h3>")
                         .Append(Description)
                         .Append("<h4><ul>");
 
@@ -121,12 +121,13 @@ namespace Conference.ViewModels
             UnloadedCommand = new RelayCommand(
                 () =>
                 {
-                    if (!_navigatingToNextFlyout)
+                    if (!_navigatingToNextFlyout && !ShareOpened)
                     {
                         _homePageViewModel.IsModal = false;
                     }
 
-                    _navigatingToNextFlyout = false;
+                    if (!ShareOpened)
+                        _navigatingToNextFlyout = false;
                 });
 
             BackClickCommand = new RelayCommand(
@@ -163,6 +164,7 @@ namespace Conference.ViewModels
                 () =>
                 {
                     _navigatingToNextFlyout = true;
+                    ShareOpened = true;
                     IsLightDismissedEnabled = false;
                     Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
                 });
@@ -326,6 +328,20 @@ namespace Conference.ViewModels
                 }
                 RaisePropertyChanged(() => IsFavorite);
                 RaisePropertyChanged(() => FavoriteText);
+            }
+        }
+
+        private bool _shareOpened;
+        public bool ShareOpened
+        {
+            get
+            {
+                return _shareOpened;
+            }
+            set
+            {
+                _shareOpened = value;
+                RaisePropertyChanged("ShareOpened");
             }
         }
 

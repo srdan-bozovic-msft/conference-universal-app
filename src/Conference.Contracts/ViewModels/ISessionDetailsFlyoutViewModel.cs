@@ -25,6 +25,7 @@ namespace Conference.Contracts.ViewModels
         bool IsFavorite { get; set; }
         bool IsLightDismissedEnabled { get; set; }
 
+        bool ShareOpened { get; set; }
         bool IsOpen { get; set; }
         ObservableCollection<ISpeakerTileInfo> SpeakerTileInfos { get; set; }
         ICommand SpeakerSelectedCommand { get; set; }

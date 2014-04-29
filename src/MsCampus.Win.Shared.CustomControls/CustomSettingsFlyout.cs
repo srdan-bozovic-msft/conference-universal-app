@@ -45,8 +45,8 @@ namespace MsCampus.Win.Shared.CustomControls
                 (d as CustomSettingsFlyout).IsLightDismissedEnabled = (bool)e.NewValue;
                 if ((bool)e.NewValue == true)
                 {
-                    (d as CustomSettingsFlyout).Hide();
-                    (d as CustomSettingsFlyout).ShowIndependent();
+                    (d as CustomSettingsFlyout)._popup.IsOpen = false;
+                    (d as CustomSettingsFlyout)._popup.IsOpen = true;
                 }
             }
         }

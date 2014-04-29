@@ -142,9 +142,9 @@
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
 
-            <SemanticZoom x:Name="sessionsSemanticZoom" IsZoomedInViewActive="False" Visibility="Collapsed" VerticalAlignment="Center">
+            <SemanticZoom x:Name="sessionsSemanticZoom" IsZoomedInViewActive="False" Visibility="Collapsed" VerticalAlignment="Stretch" Margin="0,0,0,30">
                 <SemanticZoom.ZoomedInView>
-                    <CustomControls:AutoRotatingGridView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                    <CustomControls:AutoRotatingGridView VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,0,0,-20"
             x:Name="sessionsItemGridView"
                                                          Padding="116,37,40,46"
                               ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -375,12 +375,10 @@
                 </ItemsControl>
             </StackPanel>
 
-        </Grid>
+        </Grid>     
 
+        <ToggleSwitch x:Name ="toggleSwitch" Grid.Row="1" IsOn="{Binding IsFavoritesMode, Mode=TwoWay}" OnContent="Odabrana predavanja" FontSize="15" OffContent="Sva predavanja" VerticalAlignment="Bottom" Background="#AA333333"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
         <Rectangle Grid.RowSpan="3" Fill="#77000000" Visibility="{Binding IsModal, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-        <ToggleSwitch x:Name ="toggleSwitch" Grid.Row="1" IsOn="{Binding IsFavoritesMode, Mode=TwoWay}" OnContent="Odabrana predavanja" FontSize="15" OffContent="Sva predavanja" VerticalAlignment="Bottom" Background="#FF333333"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
-
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

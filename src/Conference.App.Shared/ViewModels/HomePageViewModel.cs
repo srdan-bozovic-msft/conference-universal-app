@@ -235,16 +235,10 @@ namespace Conference.ViewModels
             IsSynchronizing = false;
             IsOffline = !res.IsCurrent;
 
-            refreshSessions();
-            SpeakerGroupTileInfos = GroupSpeakers(res.Value.Speakers);
-        }
-
-        private void refreshSessions()
-        {
             AllSessionGroupTileInfos = GroupSessions(_conferenceData);
             FavoriteSessionGroupTileInfos = GroupSessions(_conferenceData, true);
-
-            SessionGroupTileInfos = IsFavoritesMode ? FavoriteSessionGroupTileInfos : AllSessionGroupTileInfos;
+            SessionGroupTileInfos = AllSessionGroupTileInfos;
+            SpeakerGroupTileInfos = GroupSpeakers(res.Value.Speakers);
         }
 
         public void UpdateFavoriteSession(int sessionId)
@@ -255,7 +249,18 @@ namespace Conference.ViewModels
                     session.IsFavorite = !session.IsFavorite;
             }
 
-            refreshSessions();
+            foreach (var sessionGroup in AllSessionGroupTileInfos)
+                foreach (var session in sessionGroup.Sessions)
+                    if (session.Id == sessionId)
+                        session.IsFavorite = !session.IsFavorite;
+
+            FavoriteSessionGroupTileInfos = GroupSessions(_conferenceData, true);
+
+            if (IsFavoritesMode)
+            {
+                SessionGroupTileInfos = FavoriteSessionGroupTileInfos;
+            }
+ 
         }
         private static ObservableCollection<ISessionGroupTileInfo> GroupSessions(ConferenceData conferenceData, bool isFavoritesMode = false)
         {

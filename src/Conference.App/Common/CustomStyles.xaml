@@ -1162,23 +1162,26 @@
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundEllipse" Storyboard.TargetProperty="Fill">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF67b8de"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#7ED5E7"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF67b8de"/>
-                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundEllipse" Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF67b8de"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#AA7ED5E7"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#AA7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1304,23 +1307,26 @@
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundEllipse" Storyboard.TargetProperty="Fill">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonPointerOverBackgroundThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#7ED5E7"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF67b8de"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#AA7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundEllipse" Storyboard.TargetProperty="Fill">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#AA7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF67b8de"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1352,24 +1358,24 @@
                                 </VisualState>
                                 <VisualState x:Name="CheckedPointerOver">
                                     <Storyboard>
-                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedPointerOverBorderThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>-->
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundEllipse" Storyboard.TargetProperty="Fill">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonPointerOverBackgroundThemeBrush}"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundEllipse" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#7ED5E7"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="CheckedPressed">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineEllipse" Storyboard.TargetProperty="Stroke">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF67b8de"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#AA7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundEllipse" Storyboard.TargetProperty="Fill">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF67b8de"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#AA7ED5E7"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
